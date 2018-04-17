@@ -1,0 +1,9 @@
+C:\Users\jperrott\documents\visual studio 2017\Projects\BotTest\ConsoleApp1\bin\Debug\FeedbackBot.dll.config
+C:\Users\jperrott\documents\visual studio 2017\Projects\BotTest\ConsoleApp1\bin\Debug\FeedbackBot.dll
+C:\Users\jperrott\documents\visual studio 2017\Projects\BotTest\ConsoleApp1\bin\Debug\FeedbackBot.pdb
+C:\Users\jperrott\documents\visual studio 2017\Projects\BotTest\ConsoleApp1\bin\Debug\ApiAiSDK.dll
+C:\Users\jperrott\documents\visual studio 2017\Projects\BotTest\ConsoleApp1\bin\Debug\Newtonsoft.Json.dll
+C:\Users\jperrott\documents\visual studio 2017\Projects\BotTest\ConsoleApp1\obj\Debug\FeedbackBot.csproj.CoreCompileInputs.cache
+C:\Users\jperrott\documents\visual studio 2017\Projects\BotTest\ConsoleApp1\obj\Debug\FeedbackBot.csproj.CopyComplete
+C:\Users\jperrott\documents\visual studio 2017\Projects\BotTest\ConsoleApp1\obj\Debug\FeedbackBot.dll
+C:\Users\jperrott\documents\visual studio 2017\Projects\BotTest\ConsoleApp1\obj\Debug\FeedbackBot.pdb
