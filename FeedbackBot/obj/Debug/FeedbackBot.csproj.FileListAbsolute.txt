@@ -7,3 +7,13 @@ C:\Users\jperrott\documents\visual studio 2017\Projects\BotTest\ConsoleApp1\obj\
 C:\Users\jperrott\documents\visual studio 2017\Projects\BotTest\ConsoleApp1\obj\Debug\FeedbackBot.csproj.CopyComplete
 C:\Users\jperrott\documents\visual studio 2017\Projects\BotTest\ConsoleApp1\obj\Debug\FeedbackBot.dll
 C:\Users\jperrott\documents\visual studio 2017\Projects\BotTest\ConsoleApp1\obj\Debug\FeedbackBot.pdb
+D:\GitHub\FeedbackBot\FeedbackBot\bin\Debug\FeedbackBot.dll.config
+D:\GitHub\FeedbackBot\FeedbackBot\bin\Debug\FeedbackBot.dll
+D:\GitHub\FeedbackBot\FeedbackBot\bin\Debug\FeedbackBot.pdb
+D:\GitHub\FeedbackBot\FeedbackBot\bin\Debug\ApiAiSDK.dll
+D:\GitHub\FeedbackBot\FeedbackBot\bin\Debug\Newtonsoft.Json.dll
+D:\GitHub\FeedbackBot\FeedbackBot\obj\Debug\FeedbackBot.csprojResolveAssemblyReference.cache
+D:\GitHub\FeedbackBot\FeedbackBot\obj\Debug\FeedbackBot.csproj.CoreCompileInputs.cache
+D:\GitHub\FeedbackBot\FeedbackBot\obj\Debug\FeedbackBot.csproj.CopyComplete
+D:\GitHub\FeedbackBot\FeedbackBot\obj\Debug\FeedbackBot.dll
+D:\GitHub\FeedbackBot\FeedbackBot\obj\Debug\FeedbackBot.pdb

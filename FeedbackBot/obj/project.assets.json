@@ -141,11 +141,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\WIP\\FeedbackBot\\FeedbackBot\\FeedbackBot.csproj",
+      "projectUniqueName": "D:\\GitHub\\FeedbackBot\\FeedbackBot\\FeedbackBot.csproj",
       "projectName": "FeedbackBot",
-      "projectPath": "C:\\WIP\\FeedbackBot\\FeedbackBot\\FeedbackBot.csproj",
+      "projectPath": "D:\\GitHub\\FeedbackBot\\FeedbackBot\\FeedbackBot.csproj",
       "packagesPath": "C:\\Users\\jperrott\\.nuget\\packages\\",
-      "outputPath": "C:\\WIP\\FeedbackBot\\FeedbackBot\\obj\\",
+      "outputPath": "D:\\GitHub\\FeedbackBot\\FeedbackBot\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [

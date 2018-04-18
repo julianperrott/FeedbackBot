@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using ApiAiSDK;
-
-namespace FeedbackBot
+﻿namespace FeedbackBot
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using ApiAiSDK;
+
     public class DialogFlow
     {
         private ApiAi apiAi;

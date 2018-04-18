@@ -132,7 +132,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleApp1\FeedbackBot.csproj">
+    <ProjectReference Include="..\FeedbackBot\FeedbackBot.csproj">
       <Project>{fc6076fe-d9dc-4bb2-8174-da5662a7e108}</Project>
       <Name>FeedbackBot</Name>
     </ProjectReference>

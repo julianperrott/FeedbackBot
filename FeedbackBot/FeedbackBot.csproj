@@ -49,10 +49,10 @@
     <Compile Include="Bot.cs" />
     <Compile Include="models\BotReponse.cs" />
     <Compile Include="models\BotState.cs" />
+    <Compile Include="models\BotStatus.cs" />
     <Compile Include="DialogFlow.cs" />
     <Compile Include="models\DialogFlowResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="models\ResponseAction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

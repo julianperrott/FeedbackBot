@@ -1,0 +1,10 @@
+D:\GitHub\FeedbackBot\FeedbackBot\bin\Release\FeedbackBot.dll.config
+D:\GitHub\FeedbackBot\FeedbackBot\bin\Release\FeedbackBot.dll
+D:\GitHub\FeedbackBot\FeedbackBot\bin\Release\FeedbackBot.pdb
+D:\GitHub\FeedbackBot\FeedbackBot\bin\Release\ApiAiSDK.dll
+D:\GitHub\FeedbackBot\FeedbackBot\bin\Release\Newtonsoft.Json.dll
+D:\GitHub\FeedbackBot\FeedbackBot\obj\Release\FeedbackBot.csprojResolveAssemblyReference.cache
+D:\GitHub\FeedbackBot\FeedbackBot\obj\Release\FeedbackBot.csproj.CoreCompileInputs.cache
+D:\GitHub\FeedbackBot\FeedbackBot\obj\Release\FeedbackBot.csproj.CopyComplete
+D:\GitHub\FeedbackBot\FeedbackBot\obj\Release\FeedbackBot.dll
+D:\GitHub\FeedbackBot\FeedbackBot\obj\Release\FeedbackBot.pdb

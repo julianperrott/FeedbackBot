@@ -1,12 +1,16 @@
 ﻿namespace FeedbackBot
 {
-    public enum BotState
+    using System;
+
+    [Serializable]
+    public class BotState
     {
-        Greeting = 0,
-        Participate = 1,
-        SpecialEvent = 2,
-        SpecialEventResponse = 3,
-        RateExperience = 4,
-        End
+        public BotStatus BotStatus { get; set; }
+
+        public bool ParticipationAgreed { get; set; }
+
+        public string VisitRating { get; set; }
+
+        public string VisitSpecialEvent { get; set; }
     }
 }
