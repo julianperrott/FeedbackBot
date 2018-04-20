@@ -159,7 +159,6 @@
         "http://10.128.39.204:2323/nuget": {},
         "http://10.128.39.204:2525/nuget": {},
         "http://10.128.39.204:2626/nuget": {},
-        "http://packagesource": {},
         "https://api.nuget.org/v3/index.json": {},
         "https://www.nuget.org/api/v2/": {}
       },

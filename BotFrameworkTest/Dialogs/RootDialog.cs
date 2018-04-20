@@ -21,11 +21,12 @@
         {
             var activity = await result as Activity;
 
-            var response = FeedbackBot.Bot.MessageReceived(state, activity.Text);
+            var bot = new Bot(new DialogFlow(Bot.DialogFlowAccessToken));
+            var response = bot.MessageReceived(state, activity.Text);
 
             state = response.BotState;
 
-            await context.PostAsync($"BotState: {state.BotStatus}, {state.ParticipationAgreed}, {state.VisitRating}, {state.VisitSpecialEvent} ");
+            await context.PostAsync($"(debug) The state of the bot is BotStatus: {state.BotStatus}, ParticipationAgreed: {state.ParticipationAgreed}, VisitSpecialEvent: {state.VisitSpecialEvent}, VisitRating: {state.VisitRating}.");
 
             if (!string.IsNullOrEmpty(response.ResponseText))
             {

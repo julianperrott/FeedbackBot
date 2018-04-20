@@ -24,41 +24,48 @@ namespace FeedbackBotAzureFunctions
             req.SetConfiguration(configuration);
 
             log.Info(await req.Content.ReadAsStringAsync());
-
-            var botState = GetBotStatusFromCookie(req, log);
+            BotState botState = LoadBotState(req, log);
 
             // Get msg
             var messageRecieved = new MessageReceived(await req.Content.ReadAsFormDataAsync());
 
-            var botResponse = FeedbackBot.Bot.MessageReceived(botState, messageRecieved.SpeechResult);
+            var bot = new Bot(new DialogFlow(Bot.DialogFlowAccessToken));
+            var botResponse = bot.MessageReceived(botState, messageRecieved.SpeechResult);
             botState = botResponse.BotState;
 
             var response = new TwiMLResult(CreateVoiceResponse(botState, botResponse), log)
                 .ExecuteResult(req);
 
-            AddBotStatusCookie(response, botState, log);
+            SaveBotState(log, botState, response);
 
             return response;
+        }
+
+        private static void SaveBotState(TraceWriter log, BotState botState, HttpResponseMessage response)
+        {
+            AddBotStatusCookie(response, botState, log);
+        }
+
+        private static BotState LoadBotState(HttpRequestMessage req, TraceWriter log)
+        {
+            return GetBotStatusFromCookie(req, log);
         }
 
         private static VoiceResponse CreateVoiceResponse(BotState botState, BotReponse botResponse)
         {
             var voiceResponse = new VoiceResponse();
 
-            if (!string.IsNullOrEmpty(botResponse.ResponseText))
+            if (botState.BotStatus == BotStatus.End)
             {
-                if (botState.BotStatus == BotStatus.End)
-                {
-                    voiceResponse.Append(new Say(botResponse.ResponseText, Say.VoiceEnum.Man, language: Say.LanguageEnum.EnGb));
-                    voiceResponse.Hangup();
-                }
-                else
-                {
-                    var input = new List<InputEnum> { InputEnum.Speech, InputEnum.Dtmf, InputEnum.Dtmf };
-                    var gather = new Gather(input: input, timeout: 30, numDigits: 1, language: "en-GB", speechTimeout: "1");
-                    gather.Say(botResponse.ResponseText, Say.VoiceEnum.Man, language: Say.LanguageEnum.EnGb);
-                    voiceResponse.Append(gather);
-                }
+                voiceResponse.Append(new Say(botResponse.ResponseText, Say.VoiceEnum.Man, language: Say.LanguageEnum.EnGb));
+                voiceResponse.Hangup();
+            }
+            else
+            {
+                var input = new List<InputEnum> { InputEnum.Speech, InputEnum.Dtmf, InputEnum.Dtmf };
+                var gather = new Gather(input: input, timeout: 30, numDigits: 1, language: "en-GB", speechTimeout: "1");
+                gather.Say(botResponse.ResponseText, Say.VoiceEnum.Man, language: Say.LanguageEnum.EnGb);
+                voiceResponse.Append(gather);
             }
 
             return voiceResponse;

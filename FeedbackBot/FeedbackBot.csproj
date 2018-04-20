@@ -50,8 +50,8 @@
     <Compile Include="models\BotReponse.cs" />
     <Compile Include="models\BotState.cs" />
     <Compile Include="models\BotStatus.cs" />
-    <Compile Include="DialogFlow.cs" />
-    <Compile Include="models\DialogFlowResponse.cs" />
+    <Compile Include="dialogflow\DialogFlow.cs" />
+    <Compile Include="dialogflow\DialogFlowEntityName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

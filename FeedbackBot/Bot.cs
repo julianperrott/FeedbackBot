@@ -5,21 +5,36 @@
 
     public class Bot
     {
-        private static Dictionary<BotStatus, Func<BotState, string, BotReponse>> Step = new Dictionary<BotStatus, Func<BotState, string, BotReponse>>
-        {
-            { BotStatus.Greeting, GreetCustomer },
-            { BotStatus.Participate,Participate  },
-            { BotStatus.SpecialEvent,SpecialEvent  },
-            { BotStatus.SpecialEventResponse,SpecialEventResponse },
-            { BotStatus.RateExperience, RateExperience }
-        };
+        public const string DialogFlowAccessToken = "9394786d9d8040d4864c4ea1ef49c71e";
 
-        public static BotReponse MessageReceived(BotState botState, string text)
+        private readonly DialogFlow dialogFlowMapper;
+
+        private const string RatingIntent = "RatingIntent";
+        private const string SpecialEventIntent = "SpecialEventIntent";
+        private const string YesNoIntent = "YesNoIntent";
+
+        public Bot(DialogFlow dialogFlowMapper)
         {
-            return Step[botState.BotStatus](botState, text);
+            this.dialogFlowMapper = dialogFlowMapper;
+
+            State = new Dictionary<BotStatus, Func<BotState, string, BotReponse>>
+            {
+                { BotStatus.Greeting, GreetCustomerState },
+                { BotStatus.Participate, ParticipateState  },
+                { BotStatus.SpecialEvent, SpecialEventState  },
+                { BotStatus.SpecialEventResponse, SpecialEventResponseState },
+                { BotStatus.RateExperience, RateExperienceState }
+            };
         }
 
-        public static BotReponse Say(BotState state, BotStatus status, string text)
+        private Dictionary<BotStatus, Func<BotState, string, BotReponse>> State;
+
+        public BotReponse MessageReceived(BotState botState, string text)
+        {
+            return State[botState.BotStatus](botState, text);
+        }
+
+        public BotReponse Say(BotState state, BotStatus status, string text)
         {
             state.BotStatus = status;
 
@@ -30,7 +45,7 @@
             };
         }
 
-        public static BotReponse End(BotState state, string text)
+        public BotReponse End(BotState state, string text)
         {
             state.BotStatus = BotStatus.End;
 
@@ -41,70 +56,76 @@
             };
         }
 
-        public static BotReponse GreetCustomer(BotState state, string text)
+        public BotReponse GreetCustomerState(BotState state, string text)
         {
-            return Say(state, BotStatus.Participate, "Hi, you recently visited the hogwarts virtual wizard school, would you like to be entered into a draw to win a wand by answering a couple of quick questions ?");
+            return Say(state, BotStatus.Participate, "Hi, you recently visited the hogwarts virtual wizard school, would you like to be entered into a prize draw by answering a couple of quick questions ?");
         }
 
-        private static BotReponse Participate(BotState state, string arg)
+        private BotReponse ParticipateState(BotState state, string arg)
         {
-            var result = new DialogFlow().TextToResponse(arg, DialogFlow.EntityName.YesNoEntity);
+            var result = dialogFlowMapper.TextToResponse(arg, YesNoIntent, DialogFlowEntityName.YesNoEntity);
 
-            if (result == DialogFlowResponse.Yes)
+            if (result == "Yes")
             {
                 state.ParticipationAgreed = true;
                 return Say(state, BotStatus.SpecialEvent, "Thanks, when you attended was it for a special event ?");
             }
-            else
+            else if (result == "No")
             {
                 return End(state, "Ok, thanks for your visit, we hope to see you again soon, farewell.");
             }
+
+            return Say(state, BotStatus.Participate, "Oh dear, I didn't understand what you said. Please say yes or no ?");
         }
 
-        private static BotReponse SpecialEvent(BotState state, string arg)
+        private BotReponse SpecialEventState(BotState state, string arg)
         {
-            var result = new DialogFlow().TextToResponse(arg, new List<DialogFlow.EntityName> { DialogFlow.EntityName.SpecialEventEntity, DialogFlow.EntityName.YesNoEntity });
+            var allowedIntents = new List<string> { SpecialEventIntent, YesNoIntent };
+            var allowedEntities = new List<DialogFlowEntityName> { DialogFlowEntityName.SpecialEventEntity, DialogFlowEntityName.YesNoEntity };
 
-            if (result.ContainsKey(DialogFlow.EntityName.SpecialEventEntity))
+            var result = dialogFlowMapper.TextToResponses(arg, allowedIntents, allowedEntities);
+
+            if (result.ContainsKey(DialogFlowEntityName.SpecialEventEntity.ToString()))
             {
-                state.VisitSpecialEvent = result[DialogFlow.EntityName.SpecialEventEntity].ToString();
-                return Say(state, BotStatus.RateExperience, "Great, Please could you rate your visit on a scale of 1 to 10, 10 being best ?");
+                state.VisitSpecialEvent = result[DialogFlowEntityName.SpecialEventEntity.ToString()].ToString();
+                return Say(state, BotStatus.RateExperience, "Great, Please could you rate your visit on a scale of poor, average, good or excellent ?");
             }
 
-            if (result.ContainsKey(DialogFlow.EntityName.YesNoEntity))
+            if (result.ContainsKey(DialogFlowEntityName.YesNoEntity.ToString()))
             {
-                var value = result[DialogFlow.EntityName.YesNoEntity];
-                if (value == DialogFlowResponse.Yes)
+                var value = result[DialogFlowEntityName.YesNoEntity.ToString()];
+                if (value == "Yes")
                 {
                     return Say(state, BotStatus.SpecialEventResponse, "Ok, what was the special event you came for ?");
                 }
                 else
                 {
-                    return Say(state, BotStatus.RateExperience, "Please could you rate your visit on a scale of 1 to 10, 10 being best?");
+                    state.VisitSpecialEvent = "no";
+                    return Say(state, BotStatus.RateExperience, "Please could you rate your visit on a scale of of poor, average, good or excellent?");
                 }
             }
 
             return Say(state, BotStatus.SpecialEvent, "Oh dear, I didn't understand what you said. Were you here for a special event ?");
         }
 
-        private static BotReponse SpecialEventResponse(BotState state, string arg)
+        private BotReponse SpecialEventResponseState(BotState state, string arg)
         {
-            var result = new DialogFlow().TextToResponse(arg, DialogFlow.EntityName.SpecialEventEntity);
+            var result = dialogFlowMapper.TextToResponse(arg, SpecialEventIntent, DialogFlowEntityName.SpecialEventEntity);
 
-            if (result == DialogFlowResponse.NotRecognised)
+            if (string.IsNullOrEmpty(result))
             {
                 return Say(state, BotStatus.SpecialEvent, "Oh dear, I didn't understand what you said. What was the special event you came for ?");
             }
 
             state.VisitSpecialEvent = result.ToString();
-            return Say(state, BotStatus.RateExperience, "Great, Please could you rate your visit on a scale of 1 to 10, 10 being best ?");
+            return Say(state, BotStatus.RateExperience, "Great, Please could you rate your visit on a scale of poor, average, good or excellent?");
         }
 
-        private static BotReponse RateExperience(BotState state, string arg)
+        private BotReponse RateExperienceState(BotState state, string arg)
         {
-            var result = new DialogFlow().TextToResponse(arg, DialogFlow.EntityName.NumberEntity);
+            var result = dialogFlowMapper.TextToResponse(arg, RatingIntent, DialogFlowEntityName.RatingEntity);
 
-            if (result != DialogFlowResponse.UnknownResponse)
+            if (!string.IsNullOrEmpty(result))
             {
                 state.VisitRating = result.ToString();
 
