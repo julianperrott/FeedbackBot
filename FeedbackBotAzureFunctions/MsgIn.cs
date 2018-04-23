@@ -8,6 +8,7 @@ namespace FeedbackBotAzureFunctions
     using System.Web.Http;
     using System.Web.Script.Serialization;
     using FeedbackBot;
+    using FeedbackBot.BotV1;
     using Microsoft.Azure.WebJobs;
     using Microsoft.Azure.WebJobs.Extensions.Http;
     using Microsoft.Azure.WebJobs.Host;

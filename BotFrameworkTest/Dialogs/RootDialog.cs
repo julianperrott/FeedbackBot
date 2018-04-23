@@ -3,6 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using FeedbackBot;
+    using FeedbackBot.BotV1;
     using Microsoft.Bot.Builder.Dialogs;
     using Microsoft.Bot.Connector;
 
