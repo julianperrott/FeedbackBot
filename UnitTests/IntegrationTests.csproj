@@ -28,6 +28,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -55,20 +56,23 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DialogFlow\UnitTest1.cs" />
+    <Compile Include="AzureFunctionMsgIn.cs" />
+    <Compile Include="ConversationEvent.cs" />
+    <Compile Include="DialogFlowBot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FeedbackBotAzureFunctions\FeedbackBotAzureFunctions.csproj">
+      <Project>{c3798130-5223-4bff-8785-730190862f67}</Project>
+      <Name>FeedbackBotAzureFunctions</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FeedbackBot\FeedbackBot.csproj">
       <Project>{fc6076fe-d9dc-4bb2-8174-da5662a7e108}</Project>
       <Name>FeedbackBot</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BotV1\" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

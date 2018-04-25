@@ -8,7 +8,7 @@ namespace FeedbackBotAzureFunctions
     using System.Web.Http;
     using System.Web.Script.Serialization;
     using FeedbackBot;
-    using FeedbackBot.BotV1;
+    using FeedbackBot.Bot;
     using Microsoft.Azure.WebJobs;
     using Microsoft.Azure.WebJobs.Extensions.Http;
     using Microsoft.Azure.WebJobs.Host;
@@ -25,21 +25,24 @@ namespace FeedbackBotAzureFunctions
             req.SetConfiguration(configuration);
 
             log.Info(await req.Content.ReadAsStringAsync());
-            BotState botState = LoadBotState(req, log);
+            var botState = LoadBotState(req, log);
 
             // Get msg
             var messageRecieved = new MessageReceived(await req.Content.ReadAsFormDataAsync());
 
-            var bot = new Bot(new DialogFlow(Bot.DialogFlowAccessToken));
-            var botResponse = bot.MessageReceived(botState, messageRecieved.SpeechResult);
-            botState = botResponse.BotState;
+            var botResponse = ProcessMessage(botState, messageRecieved);
 
-            var response = new TwiMLResult(CreateVoiceResponse(botState, botResponse), log)
+            var response = new TwiMLResult(CreateVoiceResponse(botResponse), log)
                 .ExecuteResult(req);
 
             SaveBotState(log, botState, response);
 
             return response;
+        }
+
+        public static BotReponse ProcessMessage(BotState botState, MessageReceived messageRecieved)
+        {
+            return new Bot().MessageReceived(messageRecieved.CallSid, botState, messageRecieved.SpeechResult);
         }
 
         private static void SaveBotState(TraceWriter log, BotState botState, HttpResponseMessage response)
@@ -52,14 +55,16 @@ namespace FeedbackBotAzureFunctions
             return GetBotStatusFromCookie(req, log);
         }
 
-        private static VoiceResponse CreateVoiceResponse(BotState botState, BotReponse botResponse)
+        private static VoiceResponse CreateVoiceResponse(BotReponse botResponse)
         {
             var voiceResponse = new VoiceResponse();
 
-            if (botState.BotStatus == BotStatus.End)
+            if (botResponse.endCall)
             {
                 voiceResponse.Append(new Say(botResponse.ResponseText, Say.VoiceEnum.Man, language: Say.LanguageEnum.EnGb));
                 voiceResponse.Hangup();
+
+                // at this point we could persist our result in a db or put on a queue
             }
             else
             {
@@ -74,14 +79,14 @@ namespace FeedbackBotAzureFunctions
 
         private const string BotStateCookieName = "BotState";
 
-        public static void AddBotStatusCookie(HttpResponseMessage response, BotState botState, TraceWriter log)
+        private static void AddBotStatusCookie(HttpResponseMessage response, BotState botState, TraceWriter log)
         {
             var json = new JavaScriptSerializer().Serialize(botState);
             log.Info("Cookie out: " + json);
             response.Headers.AddCookies(new List<CookieHeaderValue> { new CookieHeaderValue(BotStateCookieName, json) });
         }
 
-        public static BotState GetBotStatusFromCookie(HttpRequestMessage request, TraceWriter log)
+        private static BotState GetBotStatusFromCookie(HttpRequestMessage request, TraceWriter log)
         {
             CookieHeaderValue cookie = request.Headers.GetCookies(BotStateCookieName).FirstOrDefault();
             if (cookie != null && !string.IsNullOrEmpty(cookie[BotStateCookieName].Value))
@@ -100,7 +105,7 @@ namespace FeedbackBotAzureFunctions
 
             log.Info("Cookie not found!");
 
-            return new BotState { BotStatus = BotStatus.Greeting };
+            return null;
         }
     }
 }

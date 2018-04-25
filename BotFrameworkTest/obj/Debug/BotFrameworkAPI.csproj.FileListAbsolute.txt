@@ -1,7 +1,3 @@
-D:\GitHub\FeedbackBot\BotFrameworkTest\obj\Debug\BotFrameworkAPI.csprojResolveAssemblyReference.cache
-D:\GitHub\FeedbackBot\BotFrameworkTest\obj\Debug\BotFrameworkAPI.csproj.CoreCompileInputs.cache
-D:\GitHub\FeedbackBot\BotFrameworkTest\obj\Debug\BotFrameworkTest.dll
-D:\GitHub\FeedbackBot\BotFrameworkTest\obj\Debug\BotFrameworkTest.pdb
 D:\GitHub\FeedbackBot\BotFrameworkTest\bin\BotFrameworkTest.dll.config
 D:\GitHub\FeedbackBot\BotFrameworkTest\bin\BotFrameworkTest.dll
 D:\GitHub\FeedbackBot\BotFrameworkTest\bin\BotFrameworkTest.pdb
@@ -43,4 +39,8 @@ D:\GitHub\FeedbackBot\BotFrameworkTest\bin\fr\Microsoft.Bot.Builder.resources.dl
 D:\GitHub\FeedbackBot\BotFrameworkTest\bin\ja\Microsoft.Bot.Builder.resources.dll
 D:\GitHub\FeedbackBot\BotFrameworkTest\bin\ru\Microsoft.Bot.Builder.resources.dll
 D:\GitHub\FeedbackBot\BotFrameworkTest\bin\zh-hans\Microsoft.Bot.Builder.resources.dll
+D:\GitHub\FeedbackBot\BotFrameworkTest\obj\Debug\BotFrameworkAPI.csprojResolveAssemblyReference.cache
+D:\GitHub\FeedbackBot\BotFrameworkTest\obj\Debug\BotFrameworkAPI.csproj.CoreCompileInputs.cache
 D:\GitHub\FeedbackBot\BotFrameworkTest\obj\Debug\BotFrameworkAPI.csproj.CopyComplete
+D:\GitHub\FeedbackBot\BotFrameworkTest\obj\Debug\BotFrameworkTest.dll
+D:\GitHub\FeedbackBot\BotFrameworkTest\obj\Debug\BotFrameworkTest.pdb

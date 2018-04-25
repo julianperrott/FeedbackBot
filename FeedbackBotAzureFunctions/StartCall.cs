@@ -13,19 +13,21 @@
         [FunctionName("StartCall")]
         public static HttpResponseMessage Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "StartCall")]HttpRequestMessage req)
         {
-            var phonenumber = new PhoneNumber("+");
+            var phoneNumberToCall = new PhoneNumber("+");
 
             // Find your Account Sid and Auth Token at twilio.com/console
-            var accountSid = "";
-            var authToken = "";
+            var twilioAccountSid = "";
+            var twilioAuthToken = "";
 
-            var applicationSid = "";
+            // Find your Programable Voice app sid at twilio.com/console
+            var twilioProgVoiceApplicationSid = "";
 
-            var from = "+";
+            var phoneNumberCallIsFrom = "+";
 
-            TwilioClient.Init(accountSid, authToken);
-            var call = CallResource.Create(phonenumber, from, applicationSid: applicationSid);
-            System.Diagnostics.Debug.WriteLine(call.Sid);
+            TwilioClient.Init(twilioAccountSid, twilioAuthToken);
+            var call = CallResource.Create(phoneNumberToCall, phoneNumberCallIsFrom, applicationSid: twilioProgVoiceApplicationSid);
+
+            System.Diagnostics.Debug.WriteLine("Call Sid is: " + call.Sid);
 
             var callSid = call.Sid;
 

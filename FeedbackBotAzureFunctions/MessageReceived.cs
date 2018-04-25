@@ -9,10 +9,6 @@
         public string Digits { get; set; }
         public string To { get; set; }
 
-        public MessageReceived()
-        {
-        }
-
         public MessageReceived(NameValueCollection col)
         {
             this.CallSid = col.Get(nameof(this.CallSid));

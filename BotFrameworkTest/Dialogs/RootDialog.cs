@@ -3,7 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using FeedbackBot;
-    using FeedbackBot.BotV1;
+    using FeedbackBot.Bot;
     using Microsoft.Bot.Builder.Dialogs;
     using Microsoft.Bot.Connector;
 
@@ -16,31 +16,45 @@
             return Task.CompletedTask;
         }
 
-        private FeedbackBot.BotState state = new FeedbackBot.BotState { BotStatus = BotStatus.Greeting };
-
         private async Task MessageReceivedAsync(IDialogContext context, IAwaitable<object> result)
         {
             var activity = await result as Activity;
 
-            var bot = new Bot(new DialogFlow(Bot.DialogFlowAccessToken));
-            var response = bot.MessageReceived(state, activity.Text);
-
-            state = response.BotState;
-
-            await context.PostAsync($"(debug) The state of the bot is BotStatus: {state.BotStatus}, ParticipationAgreed: {state.ParticipationAgreed}, VisitSpecialEvent: {state.VisitSpecialEvent}, VisitRating: {state.VisitRating}.");
+            BotReponse response = ProcessMessage(context, activity);
 
             if (!string.IsNullOrEmpty(response.ResponseText))
             {
                 await context.PostAsync(response.ResponseText);
             }
 
-            if (state.BotStatus == BotStatus.End)
+            if (response.endCall)
             {
-                state = new FeedbackBot.BotState { BotStatus = BotStatus.Greeting };
+                context.ConversationData.Clear();
                 await context.PostAsync("CALL HAS BEEN ENDED");
             }
 
             context.Wait(MessageReceivedAsync);
+        }
+
+        private static BotReponse ProcessMessage(IDialogContext context, Activity activity)
+        {
+            FeedbackBot.BotState botState = null;
+
+            if (context.ConversationData.ContainsKey("botstate"))
+            {
+                botState = context.ConversationData.GetValue<FeedbackBot.BotState>("botstate");
+            }
+
+            if (!context.ConversationData.ContainsKey("sessionId"))
+            {
+                context.ConversationData.SetValue("sessionId", Guid.NewGuid().ToString());
+            }
+
+            var response = new Bot().MessageReceived(context.ConversationData.GetValue<string>("sessionId"), botState, activity.Text);
+
+            context.ConversationData.SetValue<FeedbackBot.BotState>("botstate", response.BotState);
+
+            return response;
         }
     }
 }

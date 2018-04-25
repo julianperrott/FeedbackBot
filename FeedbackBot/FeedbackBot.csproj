@@ -46,19 +46,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BotV1\Bot.cs" />
-    <Compile Include="models\BotReponse.cs" />
-    <Compile Include="models\BotState.cs" />
-    <Compile Include="models\BotStatus.cs" />
-    <Compile Include="BotV1\DialogFlow.cs" />
-    <Compile Include="BotV1\DialogFlowEntityName.cs" />
+    <Compile Include="Bot.cs" />
+    <Compile Include="BotReponse.cs" />
+    <Compile Include="BotState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="DialogFlow_FeedbackBotV1.zip" />
+    <None Include="DialogFlow_FeedbackBotV2.zip" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="ApiAiSDK">
