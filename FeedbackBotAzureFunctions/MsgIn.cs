@@ -30,12 +30,14 @@ namespace FeedbackBotAzureFunctions
             // Get msg
             var messageRecieved = new MessageReceived(await req.Content.ReadAsFormDataAsync());
 
+            log.Info("CallSid :" + messageRecieved.CallSid);
+
             var botResponse = ProcessMessage(botState, messageRecieved);
 
             var response = new TwiMLResult(CreateVoiceResponse(botResponse), log)
                 .ExecuteResult(req);
 
-            SaveBotState(log, botState, response);
+            SaveBotState(log, botResponse.BotState, response);
 
             return response;
         }

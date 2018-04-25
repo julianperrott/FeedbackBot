@@ -8,3 +8,12 @@ D:\GitHub\FeedbackBot\FeedbackBot\obj\Release\FeedbackBot.csproj.CoreCompileInpu
 D:\GitHub\FeedbackBot\FeedbackBot\obj\Release\FeedbackBot.csproj.CopyComplete
 D:\GitHub\FeedbackBot\FeedbackBot\obj\Release\FeedbackBot.dll
 D:\GitHub\FeedbackBot\FeedbackBot\obj\Release\FeedbackBot.pdb
+F:\GitHub\FeedbackBot\FeedbackBot\FeedbackBot\bin\Release\FeedbackBot.dll.config
+F:\GitHub\FeedbackBot\FeedbackBot\FeedbackBot\bin\Release\FeedbackBot.dll
+F:\GitHub\FeedbackBot\FeedbackBot\FeedbackBot\bin\Release\FeedbackBot.pdb
+F:\GitHub\FeedbackBot\FeedbackBot\FeedbackBot\bin\Release\ApiAiSDK.dll
+F:\GitHub\FeedbackBot\FeedbackBot\FeedbackBot\bin\Release\Newtonsoft.Json.dll
+F:\GitHub\FeedbackBot\FeedbackBot\FeedbackBot\obj\Release\FeedbackBot.csprojResolveAssemblyReference.cache
+F:\GitHub\FeedbackBot\FeedbackBot\FeedbackBot\obj\Release\FeedbackBot.csproj.CoreCompileInputs.cache
+F:\GitHub\FeedbackBot\FeedbackBot\FeedbackBot\obj\Release\FeedbackBot.dll
+F:\GitHub\FeedbackBot\FeedbackBot\FeedbackBot\obj\Release\FeedbackBot.pdb

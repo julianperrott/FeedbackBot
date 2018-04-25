@@ -2,6 +2,7 @@
 {
     using System.Net;
     using System.Net.Http;
+    using System.Web.Http;
     using Microsoft.Azure.WebJobs;
     using Microsoft.Azure.WebJobs.Extensions.Http;
     using Twilio;
@@ -13,6 +14,9 @@
         [FunctionName("StartCall")]
         public static HttpResponseMessage Run([HttpTrigger(AuthorizationLevel.Anonymous, "get", "post", Route = "StartCall")]HttpRequestMessage req)
         {
+            var configuration = new HttpConfiguration();
+            req.SetConfiguration(configuration);
+
             var phoneNumberToCall = new PhoneNumber("+");
 
             // Find your Account Sid and Auth Token at twilio.com/console
@@ -25,7 +29,7 @@
             var phoneNumberCallIsFrom = "+";
 
             TwilioClient.Init(twilioAccountSid, twilioAuthToken);
-            var call = CallResource.Create(phoneNumberToCall, phoneNumberCallIsFrom, applicationSid: twilioProgVoiceApplicationSid);
+            var call = CallResource.Create(phoneNumberToCall, phoneNumberCallIsFrom, applicationSid: twilioProgVoiceApplicationSid, record: true, recordingChannels: "dual");
 
             System.Diagnostics.Debug.WriteLine("Call Sid is: " + call.Sid);
 
