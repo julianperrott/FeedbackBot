@@ -116,6 +116,7 @@ We also need to set the following in Bot.cs so that the bot talks to your Dialog
 ## The Audio 
 
 The Twilio voices are a little robotic. There are more lifelike voices available from 3rd parties. Here is a recorded call using Twilio voice:  [Twilio Voice Recording](https://raw.githubusercontent.com/julianperrott/FeedbackBot/master/post/sound/TwilioVoice.mp3)
+Note: you may need to download the mp3 to your pc if they won't play in chrome.
 
 One of which is Amazon Polly. You can listen to some of the voices [here](https://aws.amazon.com/polly). Here is a recorded call using Polly Brian voice:  [Amazon Polly Voice Recording](https://raw.githubusercontent.com/julianperrott/FeedbackBot/master/post/sound/PollyBrianVoice.mp3)
  
