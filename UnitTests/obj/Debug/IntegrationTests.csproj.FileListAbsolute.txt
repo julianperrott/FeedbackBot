@@ -156,3 +156,5 @@ F:\GitHub\FeedbackBot\FeedbackBot\UnitTests\obj\Debug\IntegrationTests.csprojRes
 F:\GitHub\FeedbackBot\FeedbackBot\UnitTests\obj\Debug\IntegrationTests.csproj.CoreCompileInputs.cache
 F:\GitHub\FeedbackBot\FeedbackBot\UnitTests\obj\Debug\IntegrationTests.dll
 F:\GitHub\FeedbackBot\FeedbackBot\UnitTests\obj\Debug\IntegrationTests.pdb
+F:\GitHub\FeedbackBot\FeedbackBot\UnitTests\bin\Debug\AWSSDK.Polly.dll
+F:\GitHub\FeedbackBot\FeedbackBot\UnitTests\bin\Debug\AWSSDK.Core.dll

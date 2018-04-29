@@ -1,5 +1,6 @@
 namespace FeedbackBotAzureFunctions
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Net.Http;
@@ -55,6 +56,34 @@ namespace FeedbackBotAzureFunctions
         private static BotState LoadBotState(HttpRequestMessage req, TraceWriter log)
         {
             return GetBotStatusFromCookie(req, log);
+        }
+
+
+        private static VoiceResponse CreateVoiceResponsePolly(BotReponse botResponse)
+        {
+            var voiceResponse = new VoiceResponse();
+
+            if (botResponse.endCall)
+            {
+                var text = "https://feedbackbotjp.azurewebsites.net/api/Polly" + "?text=" + System.Web.HttpUtility.UrlEncode(botResponse.ResponseText);
+                voiceResponse.Append(new Play(new Uri(text)));
+                voiceResponse.Hangup();
+
+                // at this point we could persist our result in a db or put on a queue
+            }
+            else
+            {
+                var input = new List<InputEnum> { InputEnum.Speech };
+                var gather = new Gather(input: input, timeout: 30, numDigits: 1, language: "en-GB", speechTimeout: "1");
+
+                var text = "https://feedbackbotjp.azurewebsites.net/api/Polly"+ "?text=" + System.Web.HttpUtility.UrlEncode(botResponse.ResponseText);
+                gather.Play(new Uri(text));
+
+                //gather.Say(botResponse.ResponseText, Say.VoiceEnum.Man, language: Say.LanguageEnum.EnGb);
+                voiceResponse.Append(gather);
+            }
+
+            return voiceResponse;
         }
 
         private static VoiceResponse CreateVoiceResponse(BotReponse botResponse)
