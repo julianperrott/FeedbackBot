@@ -31,7 +31,7 @@ namespace FeedbackBotAzureFunctions
 
         public static async Task<Stream> Say(string text)
         {
-            var client = new AmazonPollyClient("AKIAJERXAQSZQE3O6OKQ", "WVF0KFKuDWO5GgMdWmdmvyq5KgFyutgCktZFTgcb", RegionEndpoint.EUWest1);
+            var client = new AmazonPollyClient("keyidHere", "secretaccesskeyhere", RegionEndpoint.EUWest1);
             var speechRequest = new SynthesizeSpeechRequest();
             speechRequest.Text = text;
             speechRequest.OutputFormat = OutputFormat.Mp3;

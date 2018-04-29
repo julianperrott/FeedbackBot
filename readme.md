@@ -115,9 +115,9 @@ We also need to set the following in Bot.cs so that the bot talks to your Dialog
 
 ## The Audio 
 
-The Twilio voices are a little robotic. There are more lifelike voices available from 3rd parties. Here is a recorded call using Twilio voice:  [Twilio Voice Recording](https://raw.githubusercontent.com/julianperrott/FeedbackBot/master/post/sound/TwilioVoice.wav)
+The Twilio voices are a little robotic. There are more lifelike voices available from 3rd parties. Here is a recorded call using Twilio voice:  [Twilio Voice Recording](https://raw.githubusercontent.com/julianperrott/FeedbackBot/master/post/sound/TwilioVoice.mp3)
 
-One of which is Amazon Polly. You can listen to some of the voices [here](https://aws.amazon.com/polly). Here is a recorded call using Polly Brian voice:  [Amazon Polly Voice Recording](https://raw.githubusercontent.com/julianperrott/FeedbackBot/master/post/sound/PollyBrianVoice.wav)
+One of which is Amazon Polly. You can listen to some of the voices [here](https://aws.amazon.com/polly). Here is a recorded call using Polly Brian voice:  [Amazon Polly Voice Recording](https://raw.githubusercontent.com/julianperrott/FeedbackBot/master/post/sound/PollyBrianVoice.mp3)
  
 
 Another text to speech service is available [here](https://docs.microsoft.com/en-us/azure/cognitive-services/speech/api-reference-rest/bingvoiceoutput) from Microsoft.
@@ -130,7 +130,7 @@ It's pretty straight forward to write a bot you can talk to once you understand 
 
  
 
-This post was inspired by this [article](https://www.linkedin.com/pulse/next-generation-ivr-using-twilio-speech-recognition-chatbots-badri/).
+This blog post was inspired by this [article](https://www.linkedin.com/pulse/next-generation-ivr-using-twilio-speech-recognition-chatbots-badri/).
 
  
 
