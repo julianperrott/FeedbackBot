@@ -20,6 +20,7 @@ and requesting information (who, what, when, where, why).  Some examples are:
 Not all customers are able to or desire to use modern technologies to interact with your system, so a phone call gets around this problem. But the call must be life like and easy to use to be successful. 
 
 The main concerns to be considered, and the service I have used are as follows: 
+
 | Concern  | Service |
 |----------|:--------:|
 | How to Initiate the call. | Azure Function|
