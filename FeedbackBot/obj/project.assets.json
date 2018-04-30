@@ -136,28 +136,31 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\jp\\.nuget\\packages\\": {}
+    "C:\\Users\\jperrott\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\GitHub\\FeedbackBot\\FeedbackBot\\FeedbackBot\\FeedbackBot.csproj",
+      "projectUniqueName": "D:\\GitHub\\FeedbackBot\\FeedbackBot\\FeedbackBot.csproj",
       "projectName": "FeedbackBot",
-      "projectPath": "F:\\GitHub\\FeedbackBot\\FeedbackBot\\FeedbackBot\\FeedbackBot.csproj",
-      "packagesPath": "C:\\Users\\jp\\.nuget\\packages\\",
-      "outputPath": "F:\\GitHub\\FeedbackBot\\FeedbackBot\\FeedbackBot\\obj\\",
+      "projectPath": "D:\\GitHub\\FeedbackBot\\FeedbackBot\\FeedbackBot.csproj",
+      "packagesPath": "C:\\Users\\jperrott\\.nuget\\packages\\",
+      "outputPath": "D:\\GitHub\\FeedbackBot\\FeedbackBot\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
-        "C:\\Users\\jp\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\jperrott\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net461"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "http://10.128.39.204:2323/nuget": {},
+        "http://10.128.39.204:2525/nuget": {},
+        "http://10.128.39.204:2626/nuget": {},
+        "https://api.nuget.org/v3/index.json": {},
+        "https://www.nuget.org/api/v2/": {}
       },
       "frameworks": {
         "net461": {
